@@ -12,7 +12,10 @@ function calc(param1, param2, operator) {
   }
 }
 
-console.log(calc(5, 3, '+')) 
+console.log(calc(1, 1, '+'));
+console.log(calc(1, 1, '-'));
+console.log(calc(1, 1, '*'));
+console.log(calc(1, 1, '/'));
 
 /*function calc() {
   let resultado = document.getElementById('resultado');

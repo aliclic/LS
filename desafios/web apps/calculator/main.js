@@ -1,21 +1,22 @@
-
-
-const display = document.getElementById('display');
-const numeros = document.querySelectorAll('[id*=tecla]');
-const operadores = document.querySelectorAll('[id*=operador]');
-
-let novoNumero = True
-
-const atualizarDisplay = (texto) => {
-  if (novoNumero) {
-    display.textContent = texto;
-    novoNumero = False
-  } else {
-    display.textContent += texto;
-  }
+function insert(num) {
+  let numero = document.getElementById('resultado').innerHTML;
+  document.getElementById('resultado').innerHTML = numero + num;
 }
 
-const inserirNumero = (evento) => atualizarDisplay(evento.target.textContent);
-numeros.forEach (numeros => numeros.addEventListener('click', inserirNumero));
+function clean() {
+  document.getElementById('resultado').innerHTML = "";
+}
 
-operadores.numeros.forEach(operador => operador.addEventListener('click', selecionarOperador));
+function back() {
+  let result = document.getElementById('resultado').innerHTML;
+  document.getElementById('resultado').innerHTML = result.substring(0, result.length -1);
+}
+
+function calcular() {
+  let result = document.getElementById('resultado').innerHTML;
+  if (result) {
+    document.getElementById('resultado').innerHTML = eval(result)
+  } else {
+    document.getElementById('resultado').innerHTML = "None"
+  }
+}

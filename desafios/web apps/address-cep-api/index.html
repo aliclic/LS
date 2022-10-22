@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Address</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      <h1>Address</h1>
+      <form>
+        <input type="text" name="cep" id="cep" placeholder="CEP" onchange="getCep(this.value)">
+        <input type="text" name="rua" id="rua" placeholder="Rua">
+        <input type="text" name="numero" id="numero" placeholder="Número">
+        <input type="text" name="bairro" id="bairro" placeholder="Bairro">
+        <input type="text" name="estado" id="estado" placeholder="Estado">
+        <input type="text" name="cidade" id="cidade" placeholder="Cidade">
+      </form>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

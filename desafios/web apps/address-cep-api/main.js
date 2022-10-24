@@ -1,30 +1,41 @@
-let cep = document.getElementBy=('cep');
-let rua = document.getElementById('rua');
-let bairro = document.getElementById('bairro');
-let estado = document.getElementById('estado');
-let cidade = document.getElementById('cidade');
+window.getCepInfo = getCepInfo;
 
-function limpaFormularioCep() {
-  //Limpa valores do formulário de cep.
-  rua.value = ("");
-  bairro.value = ("");
-  estado.value = ("");
-  cidade.value = ("");
-}
+async function getCepInfo() {
+  cep.classList.remove('is-invalid');
 
-async function getCep(cep) {
-  try {
-    const url = `https://viacep.com.br/ws/${cep}/json/`;
-    const response = await fetch(url);
-    const info = await response.json();
-  
-    rua.value = info.logradouro;
-    bairro.value = info.bairro;
-    estado.value = info.uf;
-    cidade.value = info.localidade;
+  const cepValue = cep.value;
 
-  } catch(erro) {
-    limpaFormularioCep()
-    alert("CEP não encontrado.");
+  cep.setCustomValidity('');
+
+  if (cepValue.length >= 8) {
+    const url = `https://viacep.com.br/ws/${cepValue}/json/`;
+
+    try {
+      const response = await fetch(url);
+
+      const result = await response.json();
+
+      if (result.erro) {
+        throw new Error('Invalid CEP');
+      }
+
+      street.value = result.logradouro;
+      district.value = result.bairro;
+      city.value = result.localidade;
+      state.value = result.uf;
+      
+    } catch (error) {
+      const message = 'CEP inconsistente';
+
+      cep.setCustomValidity(message);
+
+      invalidCepFeedback.innerText = message;
+
+      cep.classList.add('is-invalid');
+    }
+  } else {
+    form.reset();
+
+    cep.value = cepValue;
   }
 }
